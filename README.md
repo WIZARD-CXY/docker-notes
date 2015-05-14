@@ -54,9 +54,9 @@ server中的server_name 改成实际使用的server hostname，比如这里就�
  	sudo service docker restart
  	There is still a bug here, though. The docs say to install the CA cert in /etc/docker/certs.d/<registry>, and clearly that isn't sufficient. In fact, after installing the certificate globally, I removed the one in /etc/docker/certs.d, restarted Docker, and it still worked.
 
-还有按照提示信息，把证书放在client端的/etc/docker/certs.d/registryname:9443/文件夹之下，实际验证之后发现不放进去也可以，但是一定要执行前面的那三个操作。
+还有一个操作，就是按照docker login时候的提示信息，需要把根证书放在client端的/etc/docker/certs.d/registryname:9443/文件夹之下，这个也还是要放进去，不然docker login的时候还是会找不到根证书。
 
-之后可以 curl --cacert rootca.crt https://admin:admin@devregistry:9443/v1/search 使用rest api查看，或者docker login devregistry:9443 登录成功之后，就可以使用了，把image 的tag加上 devregistry:9443/的前缀之后，就能push, pull对应的镜像了。
+之后可以 curl --cacert rootca.crt https://admin:admin@devregistry:9443/v1/search 使用rest api查看，或者docker login devregistry:9443 登录成功之后，就可以使用了，把image的tag加上devregistry:9443/的前缀之后，就能push, pull对应的镜像了。
 
 
 
