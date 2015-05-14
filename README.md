@@ -36,9 +36,9 @@
 
 `$htpasswd -c /etc/nginx/docker-registry.htpasswd admin`
 
-之后在配置nginx中的配置文件进行修改，比如当前的目录是~/certs目录，那么在配置文件nginx.conf中需要修改的地方有：
-server中的server_name 改成实际使用的server，这里就写成devregistry就行。
-在registry-compose.yml文件中 volumn的地方,使用新生成的devregistry.key和devregistry.crt文件，可能nginx版本不同，要求拷贝过去的目标文件的路径会有不同。
+之后在配置nginx中的配置文件进行修，在配置文件nginx.conf中需要修改的地方有：
+server中的server_name 改成实际使用的server，比如这里就写成devregistry。
+在registry-compose.yml文件中 volumn的地方,使用新生成的devregistry.key和devregistry.crt文件，对应部分的文件路径要修改下，可能nginx版本不同，要求拷贝过去的目标文件的路径会有不同。
 
 特别注意的地方：
 在写配置文件的时候，还是不要直接采用ip的形式，最好是修改 registry server 以及 client server的/etc/hosts文件 在里面加上对应的映射关系 具体可以参考这个[issue](https://github.com/docker/docker/issues/8943) 可能导致curl的时候用--cacert参数加证书可以但是docker login的时候不可以（貌似会默认按照hostname的方式来）
