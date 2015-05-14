@@ -13,7 +13,7 @@
 
 `$openssl genrsa -out devregistry.key 2048`
 
-根据 devregistry.key生成证书请求 devregistry.csr 文件 注意填信息的时候 common name里面要填服务器的名称 比如这里的测试文件填写的是devregistry
+根据 devregistry.key生成证书请求 devregistry.csr 文件 注意填信息的时候 common name里面要填服务器的名称(比如填写devregistry)
 
 `$openssl req -new -key devregistry.key -out devregistry.csr`
 
