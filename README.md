@@ -2,7 +2,8 @@
 ####创建证书的基本流程
 
 创建根证书 ca.key
-openssl genrsa -out rootca.key 2048
+
+`$openssl genrsa -out rootca.key 2048`
 
 根据ca.key生成认证文件rootca.crt（common name中不用添加对应的内容）
 openssl req -x509 -new -nodes -key rootca.key -days 10000 -out rootca.crt
