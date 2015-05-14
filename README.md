@@ -34,12 +34,12 @@ server中的server_name 改成实际使用的server，这里就写成devregistry
 在registry-compose.yml文件中 volumn的地方,使用新生成的devregistry.key和devregistry.crt文件，可能nginx版本不同，要求拷贝过去的目标文件的路径会有不同。
 
 特别注意的地方：
-1、在写配置文件的时候，还是不要直接采用ip的形式，最好是修改 registry server 以及 client server的/etc/hosts文件 在里面加上对应的映射关系 具体可以参考这个issue:https://github.com/docker/docker/issues/8943 可能导致curl的时候用--cacert参数加证书可以但是docker login的时候不可以（貌似会默认按照hostname的方式来）
+1、在写配置文件的时候，还是不要直接采用ip的形式，最好是修改 registry server 以及 client server的/etc/hosts文件 在里面加上对应的映射关系 具体可以参考这个[issue](https://github.com/docker/docker/issues/8943) 可能导致curl的时候用--cacert参数加证书可以但是docker login的时候不可以（貌似会默认按照hostname的方式来）
 
 之后相关信息配置好之后，直接sudo docker-compose up这样就能启动对应的容器了。
 
 ####client端的配置
-启动了registry server对一个的容器之后，需要在客户端进行配置，首先把devregistry加入到/etc/hosts中，重启网络，由于证书是自己签发的，在docker login的时候可能会有x509: certificate signed by unknown authority 的错误，具体解决方案可以参考这个：https://github.com/docker/docker/issues/8849 验证了一下，这个方式是有效的：
+启动了registry server对一个的容器之后，需要在客户端进行配置，首先把devregistry加入到/etc/hosts中，重启网络，由于证书是自己签发的，在docker login的时候可能会有x509: certificate signed by unknown authority 的错误，具体解决方案可以参考[这个](https://github.com/docker/docker/issues/8849) 验证了一下，这个方式是有效的：
  
 	Copy CA cert to /usr/local/share/ca-certificates.
  	sudo update-ca-certificates
