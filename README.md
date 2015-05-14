@@ -23,9 +23,9 @@ openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreate
 
 ####registry的配置文件
 
-具体的nginx 以及 docker-registry 还有 docker-compose的配置文件可以参考：http://dockone.io/article/338
+具体的nginx 以及 docker-registry 还有 docker-compose的配置文件可以参考这个[文章](http://dockone.io/article/338)
 
-首先看一下nginx目录下的docker-registry.htpasswd文件，这个里面是用户认证信息，admin:加密密码，这里面一共两个可以用于认证的用户，一个是admin:admin 一个是 testuser:teseuser，具体添加新的用户的时候可以参考：http://segmentfault.com/a/1190000000801162
+首先看一下nginx目录下的docker-registry.htpasswd文件，这个里面是用户认证信息，admin:加密密码，这里面一共两个可以用于认证的用户，一个是admin:admin 一个是 testuser:teseuser，具体添加新的用户的时候可以参考[这个文章](http://segmentfault.com/a/1190000000801162)
 
 具体操作就是：htpasswd -c /etc/nginx/docker-registry.htpasswd admin
 
