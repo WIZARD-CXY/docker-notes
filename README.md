@@ -21,7 +21,7 @@ openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreate
 具体可以参考这个[文章](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
 
 
-####registry的配置文件
+####registry的配置
 
 具体的nginx 以及 docker-registry 还有 docker-compose的配置文件可以参考这个[文章](http://dockone.io/article/338)
 
