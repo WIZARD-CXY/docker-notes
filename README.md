@@ -33,6 +33,7 @@
 首先看一下nginx目录下的docker-registry.htpasswd文件，这个里面是用户认证信息，admin:加密密码，这里面一共两个可以用于认证的用户，一个是admin:admin 一个是 testuser:teseuser，具体添加新的用户的时候可以参考[这个文章](http://segmentfault.com/a/1190000000801162)
 
 具体操作就是：
+
 `$htpasswd -c /etc/nginx/docker-registry.htpasswd admin`
 
 之后在配置nginx中的配置文件进行修改，比如当前的目录是~/certs目录，那么在配置文件nginx.conf中需要修改的地方有：
