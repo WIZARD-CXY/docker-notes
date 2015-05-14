@@ -6,16 +6,20 @@
 `$openssl genrsa -out rootca.key 2048`
 
 根据ca.key生成认证文件rootca.crt（common name中不用添加对应的内容）
-openssl req -x509 -new -nodes -key rootca.key -days 10000 -out rootca.crt
+
+`$openssl req -x509 -new -nodes -key rootca.key -days 10000 -out rootca.crt`
 
 生成registry要使用的 devregistry.key
-openssl genrsa -out devregistry.key 2048
+
+`$openssl genrsa -out devregistry.key 2048`
 
 根据 devregistry.key生成证书请求 devregistry.csr 文件 注意填信息的时候 common name里面要填服务器的ip
-openssl req -new -key devregistry.key -out devregistry.csr
+
+`$openssl req -new -key devregistry.key -out devregistry.csr`
 
 根据证书请求文件以及根证书文件生成最终server端使用的crt文件
-openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreateserial -out devregistry.crt -days 10000
+
+`$openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreateserial -out devregistry.crt -days 10000`
 
 相关的用于测试的证书已经生成好，放在了hostnameCA文件夹中，生成证书的时候，common name 一项中填的是 devregistry 具体使用的时候，需要在服务端和客户端的/etc/hosts中把registryip和devregistry的映射关系加进来。
 
@@ -28,7 +32,8 @@ openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreate
 
 首先看一下nginx目录下的docker-registry.htpasswd文件，这个里面是用户认证信息，admin:加密密码，这里面一共两个可以用于认证的用户，一个是admin:admin 一个是 testuser:teseuser，具体添加新的用户的时候可以参考[这个文章](http://segmentfault.com/a/1190000000801162)
 
-具体操作就是：htpasswd -c /etc/nginx/docker-registry.htpasswd admin
+具体操作就是：
+`$htpasswd -c /etc/nginx/docker-registry.htpasswd admin`
 
 之后在配置nginx中的配置文件进行修改，比如当前的目录是~/certs目录，那么在配置文件nginx.conf中需要修改的地方有：
 server中的server_name 改成实际使用的server，这里就写成devregistry就行。
