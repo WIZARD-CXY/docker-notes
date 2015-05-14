@@ -18,7 +18,7 @@ openssl x509 -req -in devregistry.csr -CA rootca.crt -CAkey rootca.key -CAcreate
 
 相关的用于测试的证书已经生成好，放在了hostnameCA文件夹中，生成证书的时候，common name 一项中填的是 devregistry 具体使用的时候，需要在服务端和客户端的/etc/hosts中把registryip和devregistry的映射关系加进来。
 
-具体可以参考这个（文章）[https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04]
+具体可以参考这个[文章](https://www.digitalocean.com/community/tutorials/how-to-set-up-a-private-docker-registry-on-ubuntu-14-04)
 
 
 ####registry的配置文件
